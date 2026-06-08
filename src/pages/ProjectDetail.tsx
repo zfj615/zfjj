@@ -51,8 +51,8 @@ const ProjectDetail: React.FC = () => {
 # 读取日志文件，跳过注释行
 df = pd.read_csv('training.log', comment='#')
 
-# 填充缺失值
-df = df.fillna(method='ffill')
+# 填充缺失值（新版语法）
+df = df.ffill()
 
 # 转换时间戳
 df['time'] = pd.to_datetime(df['time'])

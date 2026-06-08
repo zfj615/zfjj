@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench } from 'lucide-react';
+import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench, ClipboardCheck } from 'lucide-react';
 
 interface Module {
   id: string;
@@ -60,13 +60,22 @@ const Modules: React.FC = () => {
       textColor: 'text-red-600'
     },
     {
+      id: 'quiz',
+      title: '测验模块',
+      description: '10个知识测验，检验学习成果，巩固知识掌握',
+      icon: <ClipboardCheck size={32} />,
+      color: 'indigo',
+      bgColor: 'bg-indigo-50',
+      textColor: 'text-indigo-600'
+    },
+    {
       id: 'resources',
       title: '学习资料/工具推荐',
       description: '学习资料、常用工具、开发环境配置指南',
       icon: <Wrench size={32} />,
-      color: 'indigo',
-      bgColor: 'bg-indigo-50',
-      textColor: 'text-indigo-600'
+      color: 'gray',
+      bgColor: 'bg-gray-50',
+      textColor: 'text-gray-600'
     }
   ];
 
@@ -93,7 +102,7 @@ const Modules: React.FC = () => {
               <h3 className="text-xl font-bold mb-2 text-gray-800">{module.title}</h3>
               <p className="text-gray-600 mb-4">{module.description}</p>
               <div className={`flex items-center ${module.textColor} font-medium`}>
-                <span>开始学习</span>
+                <span>{module.id === 'quiz' ? '开始测验' : '开始学习'}</span>
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -112,7 +121,8 @@ const Modules: React.FC = () => {
                 <li>然后学习数据清洗模块，掌握数据预处理</li>
                 <li>接着学习数据可视化模块，学会展示数据</li>
                 <li>再学习商务指标分析模块，理解业务指标</li>
-                <li>最后通过实战案例模块，融会贯通</li>
+                <li>通过实战案例模块，融会贯通</li>
+                <li>完成测验模块，检验学习成果</li>
               </ol>
             </div>
             <div>

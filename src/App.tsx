@@ -8,6 +8,7 @@ import DataCleaning from './pages/DataCleaning';
 import DataVisualization from './pages/DataVisualization';
 import BusinessMetrics from './pages/BusinessMetrics';
 import CaseStudies from './pages/CaseStudies';
+import QuizModule from './pages/QuizModule';
 import Resources from './pages/Resources';
 
 const App: React.FC = () => {
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         <Route path="/modules/data-visualization" element={<DataVisualization />} />
         <Route path="/modules/business-metrics" element={<BusinessMetrics />} />
         <Route path="/modules/case-studies" element={<CaseStudies />} />
+        <Route path="/modules/quiz" element={<QuizModule />} />
         <Route path="/resources" element={<Resources />} />
       </Routes>
     </Router>

@@ -52,8 +52,8 @@ df_filled = df.copy()
 # 数值列用均值填充
 df_filled["销量"] = df_filled["销量"].fillna(df_filled["销量"].mean())
 df_filled["单价"] = df_filled["单价"].fillna(df_filled["单价"].median())
-# 分类列用前向填充或众数
-df_filled["产品"] = df_filled["产品"].fillna(method="ffill")
+# 分类列用前向填充（新版Pandas语法）
+df_filled["产品"] = df_filled["产品"].ffill()
 print(f"\\n填充缺失值后:")
 print(df_filled)
 
@@ -354,8 +354,8 @@ print(df.isnull().sum())
 df["销量"] = df["销量"].fillna(df["销量"].mean())
 # 使用众数填充单价
 df["单价"] = df["单价"].fillna(df["单价"].mode()[0])
-# 使用前向填充产品
-df["产品"] = df["产品"].fillna(method="ffill")
+# 使用前向填充产品（新版语法）
+df["产品"] = df["产品"].ffill()
 
 print("\\n填充后数据:")
 print(df)`}

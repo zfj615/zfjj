@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench } from 'lucide-react';
+import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench, ClipboardCheck } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
@@ -244,15 +244,32 @@ const Home: React.FC = () => {
             </Link>
 
             <Link
-              to="/resources"
+              to="/modules/quiz"
               className="group bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-2 border-gray-100 hover:border-indigo-300"
             >
               <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition duration-300">
-                <Wrench size={32} className="text-indigo-600" />
+                <ClipboardCheck size={32} className="text-indigo-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">测验模块</h3>
+              <p className="text-gray-600 mb-4">10个知识测验，检验学习成果，巩固知识掌握</p>
+              <div className="flex items-center text-indigo-600 font-medium">
+                <span>开始测验</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+
+            <Link
+              to="/resources"
+              className="group bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-2 border-gray-100 hover:border-gray-300"
+            >
+              <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition duration-300">
+                <Wrench size={32} className="text-gray-600" />
               </div>
               <h3 className="text-xl font-bold mb-2 text-gray-800">学习资料/工具推荐</h3>
               <p className="text-gray-600 mb-4">学习资料、常用工具、开发环境配置指南</p>
-              <div className="flex items-center text-indigo-600 font-medium">
+              <div className="flex items-center text-gray-600 font-medium">
                 <span>查看资料</span>
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
