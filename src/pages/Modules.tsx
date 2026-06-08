@@ -1,212 +1,131 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, ChevronUp, BookOpen, BarChart3, Users, Award } from 'lucide-react';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  keySkills: string[];
-}
+import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench } from 'lucide-react';
 
 interface Module {
-  id: number;
+  id: string;
   title: string;
-  subtitle: string;
+  description: string;
   icon: React.ReactNode;
   color: string;
-  projects: Project[];
+  bgColor: string;
+  textColor: string;
 }
 
 const Modules: React.FC = () => {
-  const [expandedModule, setExpandedModule] = useState<number | null>(null);
-
   const modules: Module[] = [
     {
-      id: 1,
-      title: '第一部分',
-      subtitle: '结构化拆解与数据清洗（筑基篇）',
-      icon: <BookOpen size={24} />,
+      id: 'python-basics',
+      title: 'Python 基础模块',
+      description: 'Python 语法、数据类型、函数、Pandas 和 NumPy 入门',
+      icon: <BookOpen size={32} />,
       color: 'blue',
-      projects: [
-        {
-          id: 1,
-          title: '项目一：AI 训练日志的清洗与异常监控',
-          description: '清洗 AI 模型训练产生的原始日志，处理警告信息、空行、格式断裂等问题。',
-          keySkills: ['pd.read_csv', 'fillna', 'pd.to_datetime', 'dt 访问器']
-        },
-        {
-          id: 2,
-          title: '项目二：电商评论情感词典构建与预处理',
-          description: '清洗人工标注的文本数据并提取高频特征词，为微调大模型做准备。',
-          keySkills: ['str.replace', 'str.split', 'explode', 'value_counts']
-        },
-        {
-          id: 3,
-          title: '项目三：多源传感器数据融合与时间序列对齐',
-          description: '处理不同采样频率的传感器数据，实现时间序列对齐。',
-          keySkills: ['pd.merge_asof', 'resample', 'rolling']
-        }
-      ]
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-600'
     },
     {
-      id: 2,
-      title: '第二部分',
-      subtitle: '流程诊断与业务洞察（进阶篇）',
-      icon: <BarChart3 size={24} />,
+      id: 'data-cleaning',
+      title: '数据清洗模块',
+      description: '缺失值、异常值、重复值处理，数据清洗实战案例',
+      icon: <Database size={32} />,
       color: 'green',
-      projects: [
-        {
-          id: 4,
-          title: '项目四：AI 数字产品订阅流失分析',
-          description: '分析类似 ChatGPT Plus 订阅服务的用户续费率，诊断流失环节。',
-          keySkills: ['日期差值计算', '多维分组聚合', '热力图']
-        },
-        {
-          id: 5,
-          title: '项目五：LLM 大模型 API 调用成本归因与优化',
-          description: '找出成本消耗的源头，验证二八定律。',
-          keySkills: ['数据透视表', 'nlargest', '帕累托分析']
-        }
-      ]
+      bgColor: 'bg-green-50',
+      textColor: 'text-green-600'
     },
     {
-      id: 3,
-      title: '第三部分',
-      subtitle: '核心算法与用户分层（必修篇）',
-      icon: <Users size={24} />,
+      id: 'data-visualization',
+      title: '数据可视化模块',
+      description: 'Matplotlib、Seaborn、Plotly 图表制作，商务图表实战',
+      icon: <BarChart3 size={32} />,
+      color: 'purple',
+      bgColor: 'bg-purple-50',
+      textColor: 'text-purple-600'
+    },
+    {
+      id: 'business-metrics',
+      title: '商务指标分析模块',
+      description: 'GMV、转化率、复购率、留存率等核心指标计算与分析',
+      icon: <TrendingUp size={32} />,
       color: 'amber',
-      projects: [
-        {
-          id: 6,
-          title: '项目六：零售购物篮关联规则挖掘',
-          description: '分析超市 POS 机流水数据，发现商品之间的隐含购买关联。',
-          keySkills: ['groupby', 'unstack', 'apriori', 'association_rules']
-        },
-        {
-          id: 7,
-          title: '项目七：AI 门禁系统的无监督聚类分群',
-          description: '识别园区内的异常逗留人员。',
-          keySkills: ['StandardScaler', 'KMeans', 'groupby.agg']
-        },
-        {
-          id: 8,
-          title: '项目八：客户终身价值（CLV）RFM 分层与聚类精分',
-          description: '从传统 RFM 规则分层升级为 AI 驱动的无监督聚类分层。',
-          keySkills: ['groupby.agg', 'KMeans', '雷达图']
-        }
-      ]
+      bgColor: 'bg-amber-50',
+      textColor: 'text-amber-600'
     },
     {
-      id: 4,
-      title: '第四部分',
-      subtitle: '综合实战与 AI 伦理审计（高阶篇）',
-      icon: <Award size={24} />,
+      id: 'case-studies',
+      title: '实战案例模块',
+      description: '电商数据分析、销售报表分析等完整实战案例',
+      icon: <Briefcase size={32} />,
       color: 'red',
-      projects: [
-        {
-          id: 9,
-          title: '项目九：AI 大模型微调数据集的偏见（Bias）审计',
-          description: '审计训练数据是否存在性别、地域等偏见。',
-          keySkills: ['pd.crosstab', '数据重采样', '交叉分析']
-        },
-        {
-          id: 10,
-          title: '项目十：构建端到端 AI 销售预测看板',
-          description: '模拟从脏数据接收、清洗、建模到输出报告的完整工作流。',
-          keySkills: ['pd.merge', 'pd.get_dummies', '线性回归']
-        }
-      ]
+      bgColor: 'bg-red-50',
+      textColor: 'text-red-600'
+    },
+    {
+      id: 'resources',
+      title: '学习资料/工具推荐',
+      description: '学习资料、常用工具、开发环境配置指南',
+      icon: <Wrench size={32} />,
+      color: 'indigo',
+      bgColor: 'bg-indigo-50',
+      textColor: 'text-indigo-600'
     }
   ];
-
-  const toggleModule = (moduleId: number) => {
-    setExpandedModule(expandedModule === moduleId ? null : moduleId);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center mb-12">课程模块</h1>
+        <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">课程模块</h1>
+        <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+          从 Python 基础到实战案例，系统学习商务数据分析，让数据成为您的职场竞争力
+        </p>
 
-        {/* Learning Path */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">学习路径</h2>
-          <div className="relative">
-            {/* Timeline */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gray-200"></div>
-            
-            {/* Timeline Items */}
-            {modules.map((module, index) => (
-              <div key={module.id} className={`relative mb-12 flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                <div className="md:w-1/2"></div>
-                <div className={`z-10 flex items-center justify-center w-10 h-10 rounded-full bg-${module.color}-600 text-white`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {modules.map((module) => (
+            <Link
+              key={module.id}
+              to={module.id === 'resources' ? `/resources` : `/modules/${module.id}`}
+              className="group bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-2 border-gray-100 hover:border-gray-200"
+            >
+              <div className={`${module.bgColor} w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition duration-300`}>
+                <div className={module.textColor}>
                   {module.icon}
                 </div>
-                <div className="md:w-1/2 pl-6 md:pl-8 pt-4 md:pt-0">
-                  <h3 className="text-xl font-bold mb-2">{module.title}</h3>
-                  <p className="text-gray-600 mb-4">{module.subtitle}</p>
-                  <p className="text-sm text-gray-500">
-                    包含 {module.projects.length} 个项目
-                  </p>
-                </div>
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">{module.title}</h3>
+              <p className="text-gray-600 mb-4">{module.description}</p>
+              <div className={`flex items-center ${module.textColor} font-medium`}>
+                <span>开始学习</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          ))}
         </div>
 
-        {/* Modules and Projects */}
-        <div className="space-y-6">
-          {modules.map((module) => (
-            <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <button
-                onClick={() => toggleModule(module.id)}
-                className={`w-full flex justify-between items-center p-6 text-left bg-${module.color}-50 hover:bg-${module.color}-100 transition duration-200`}
-              >
-                <div className="flex items-center space-x-4">
-                  <div className={`w-10 h-10 rounded-full bg-${module.color}-600 flex items-center justify-center text-white`}>
-                    {module.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold">{module.title}</h3>
-                    <p className="text-gray-600">{module.subtitle}</p>
-                  </div>
-                </div>
-                {expandedModule === module.id ? (
-                  <ChevronUp size={24} className={`text-${module.color}-600`} />
-                ) : (
-                  <ChevronDown size={24} className={`text-${module.color}-600`} />
-                )}
-              </button>
-              
-              {expandedModule === module.id && (
-                <div className="p-6 border-t border-gray-200">
-                  <div className="space-y-4">
-                    {module.projects.map((project) => (
-                      <Link
-                        key={project.id}
-                        to={`/project/${project.id}`}
-                        className="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200"
-                      >
-                        <h4 className="text-lg font-semibold mb-2">{project.title}</h4>
-                        <p className="text-gray-600 mb-3">{project.description}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.keySkills.map((skill, index) => (
-                            <span
-                              key={index}
-                              className={`px-2 py-1 text-xs rounded-full bg-${module.color}-100 text-${module.color}-800`}
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
+        <div className="mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-100">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">学习建议</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-2">📚 学习顺序</h3>
+              <ol className="list-decimal list-inside text-gray-600 space-y-1">
+                <li>先学习 Python 基础模块，打好编程基础</li>
+                <li>然后学习数据清洗模块，掌握数据预处理</li>
+                <li>接着学习数据可视化模块，学会展示数据</li>
+                <li>再学习商务指标分析模块，理解业务指标</li>
+                <li>最后通过实战案例模块，融会贯通</li>
+              </ol>
             </div>
-          ))}
+            <div>
+              <h3 className="font-semibold text-gray-700 mb-2">💡 学习方法</h3>
+              <ul className="list-disc list-inside text-gray-600 space-y-1">
+                <li>每个模块的代码都要自己动手运行一遍</li>
+                <li>尝试修改代码，观察结果变化</li>
+                <li>结合自己的业务场景思考应用方法</li>
+                <li>定期回顾，温故知新</li>
+                <li>遇到问题时，查看学习资料和工具推荐</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
