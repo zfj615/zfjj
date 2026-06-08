@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench, ClipboardCheck } from 'lucide-react';
+import { BookOpen, Database, BarChart3, TrendingUp, Briefcase, Wrench, ClipboardCheck, Calculator, Sigma, Clock } from 'lucide-react';
 
 interface Module {
   id: string;
@@ -22,6 +22,33 @@ const Modules: React.FC = () => {
       color: 'blue',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-600'
+    },
+    {
+      id: 'numpy',
+      title: 'NumPy 专项模块',
+      description: '数组创建、索引切片、数值计算、矩阵运算',
+      icon: <Calculator size={32} />,
+      color: 'indigo',
+      bgColor: 'bg-indigo-50',
+      textColor: 'text-indigo-600'
+    },
+    {
+      id: 'statistics',
+      title: '统计学基础模块',
+      description: '均值、中位数、标准差、分位数、分布形态分析',
+      icon: <Sigma size={32} />,
+      color: 'pink',
+      bgColor: 'bg-pink-50',
+      textColor: 'text-pink-600'
+    },
+    {
+      id: 'time-series',
+      title: '时间序列分析模块',
+      description: '日期处理、重采样、移动平均、趋势分析、季节性分析',
+      icon: <Clock size={32} />,
+      color: 'cyan',
+      bgColor: 'bg-cyan-50',
+      textColor: 'text-cyan-600'
     },
     {
       id: 'data-cleaning',
@@ -64,9 +91,9 @@ const Modules: React.FC = () => {
       title: '测验模块',
       description: '10个知识测验，检验学习成果，巩固知识掌握',
       icon: <ClipboardCheck size={32} />,
-      color: 'indigo',
-      bgColor: 'bg-indigo-50',
-      textColor: 'text-indigo-600'
+      color: 'violet',
+      bgColor: 'bg-violet-50',
+      textColor: 'text-violet-600'
     },
     {
       id: 'resources',
@@ -82,10 +109,46 @@ const Modules: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">课程模块</h1>
-        <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-          从 Python 基础到实战案例，系统学习商务数据分析，让数据成为您的职场竞争力
-        </p>
+        <div className="bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-600 text-white rounded-xl p-8 mb-12">
+          <h1 className="text-3xl font-bold mb-4">课程模块</h1>
+          <p className="text-blue-100">
+            系统化的学习路径，从零基础到实战应用，全面掌握商务数据分析技能
+          </p>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">📚 课程结构</h2>
+          <p className="text-gray-600 mb-4">
+            本课程包含 <strong className="text-indigo-600">10个核心模块</strong>，涵盖从Python基础到商务实战的完整学习路径。
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-blue-700 mb-2">基础篇（4模块）</h3>
+              <ul className="text-gray-600 text-sm space-y-1">
+                <li>• Python 基础</li>
+                <li>• NumPy 专项</li>
+                <li>• 统计学基础</li>
+                <li>• 时间序列分析</li>
+              </ul>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-green-700 mb-2">应用篇（4模块）</h3>
+              <ul className="text-gray-600 text-sm space-y-1">
+                <li>• 数据清洗</li>
+                <li>• 数据可视化</li>
+                <li>• 商务指标分析</li>
+                <li>• 实战案例</li>
+              </ul>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-purple-700 mb-2">巩固篇（2模块）</h3>
+              <ul className="text-gray-600 text-sm space-y-1">
+                <li>• 测验模块</li>
+                <li>• 学习资料</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {modules.map((module) => (
@@ -118,9 +181,12 @@ const Modules: React.FC = () => {
               <h3 className="font-semibold text-gray-700 mb-2">📚 学习顺序</h3>
               <ol className="list-decimal list-inside text-gray-600 space-y-1">
                 <li>先学习 Python 基础模块，打好编程基础</li>
-                <li>然后学习数据清洗模块，掌握数据预处理</li>
-                <li>接着学习数据可视化模块，学会展示数据</li>
-                <li>再学习商务指标分析模块，理解业务指标</li>
+                <li>学习 NumPy 专项，掌握数值计算</li>
+                <li>学习统计学基础，理解数据分析原理</li>
+                <li>学习时间序列分析，掌握趋势分析</li>
+                <li>学习数据清洗模块，掌握数据预处理</li>
+                <li>学习数据可视化模块，学会展示数据</li>
+                <li>学习商务指标分析模块，理解业务指标</li>
                 <li>通过实战案例模块，融会贯通</li>
                 <li>完成测验模块，检验学习成果</li>
               </ol>
@@ -128,11 +194,11 @@ const Modules: React.FC = () => {
             <div>
               <h3 className="font-semibold text-gray-700 mb-2">💡 学习方法</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-1">
-                <li>每个模块的代码都要自己动手运行一遍</li>
-                <li>尝试修改代码，观察结果变化</li>
-                <li>结合自己的业务场景思考应用方法</li>
-                <li>定期回顾，温故知新</li>
-                <li>遇到问题时，查看学习资料和工具推荐</li>
+                <li>每个模块都有在线代码运行区，可以即时练习</li>
+                <li>建议先理解概念，再动手运行代码</li>
+                <li>遇到不懂的地方，多运行几次代码观察结果</li>
+                <li>完成每个模块后，进行对应测验检验理解</li>
+                <li>实战案例模块建议完整运行一遍代码</li>
               </ul>
             </div>
           </div>
